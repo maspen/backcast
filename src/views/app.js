@@ -2,7 +2,6 @@ var AppView = Backbone.View.extend({
 
   
   el: '#app',
-  //var collection
 
   initialize: function() {
     // * create the collection
@@ -16,9 +15,8 @@ var AppView = Backbone.View.extend({
     
     // * resetting the collection: collection.reset()
 
-    this.videos = new Videos(exampleVideoData);
-    // this.videos = new Videos();
-
+    // this.videos = new Videos(exampleVideoData);
+    this.videos = new Videos();
     this.render();
   },
   
@@ -30,7 +28,7 @@ var AppView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template());
     
-    // console.log(this.videos);
+    console.log('this.videos', this.videos);
 
     new SearchView({
       el: this.$('.search')

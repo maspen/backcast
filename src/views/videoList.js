@@ -2,7 +2,9 @@ var VideoListView = Backbone.View.extend({
 
   initialize: function() {
 
-    this.listenTo( this.collection, 'sync', function(event) {
+    console.log('VLV ', this.collection); 
+
+    this.listenTo( this.collection, 'add', function(event) {
       console.log('I hear syncing...');
       this.render();
     }, this);

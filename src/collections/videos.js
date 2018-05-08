@@ -13,9 +13,12 @@ var Videos = Backbone.Collection.extend({
   //     collection
   
   initialize: function() {
+    
 
     // go to YouTube, get data
     // if no date, take argument
+    console.log('Videos.initialize');
+    console.log(this);
 
     this.on('sync', function() {
       console.log('collection synced');
@@ -39,25 +42,28 @@ var Videos = Backbone.Collection.extend({
   },
   
   search: function() {
+    // fetch - query data, already has url
+    // create a parse method
     $.ajax({
       url: this.url,
       type: 'GET',
       data: {
         key: YOUTUBE_API_KEY,
         maxResults: '5',
-        query: 'surfing',
+        q: 'surfing',
         part: 'snippet'
       },
       dataType: 'json',
       success: function(data) {
         console.log('Success!', data.items);
+        this.set( data.items );
+        console.log(this);
+        // model.select( this.models[0] );
       }.bind(this),
       error: function(data) {
         console.log('Failure...', data);
       }.bind(this)
     });
   },
-  
-  // this.search();
 
 });
