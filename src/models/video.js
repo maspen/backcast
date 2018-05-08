@@ -10,17 +10,12 @@ var Video = Backbone.Model.extend({
   },
 
   select: function( model ) {
-
-    console.log('model.select is fired on', model);
-    // var id = $(event.target).closest('.media').data('id');
+    
+    model = model || this;
+    
     var id = model.id;
-
-    // var title = $(event.target).text();
     var title = model.attributes.snippet.title;
-
-    // var description = $(event.target).next('.video-list-entry-detail').text();
     var description = model.attributes.snippet.description;
-
     var url = `https://www.youtube.com/embed/${id}`;
 
     $('.video-player').find('iframe').attr('src', url);      
