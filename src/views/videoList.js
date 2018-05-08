@@ -7,11 +7,11 @@ var VideoListView = Backbone.View.extend({
     // need to put somewhere else?
     this.$el.children().detach();
     // TODO listener on collection when changes calls render
-    _.each(this.collection, function(movie){
+    _.each(this.collection.models, function(movie) {
       // console.log('movie ' + movie);
       //console.log('VideoListView calling render()');
       this.render();
-    }, this)
+    }, this);
   },
 
   render: function() {
