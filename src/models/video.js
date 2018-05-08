@@ -21,7 +21,6 @@ var Video = Backbone.Model.extend({
     // var description = $(event.target).next('.video-list-entry-detail').text();
     var description = model.attributes.snippet.description;
 
-
     var url = `https://www.youtube.com/embed/${id}`;
 
     $('.video-player').find('iframe').attr('src', url);      

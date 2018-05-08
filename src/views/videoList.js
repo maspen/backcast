@@ -16,6 +16,9 @@ var VideoListView = Backbone.View.extend({
 
     // $('.video-list').on('click', '.video-list-entry-title', function(event) {
     //   var id = $(event.target).closest('.media').data('id');
+    // newModel = model.select(id);
+    
+    
     //   var title = $(event.target).text();
     //   var description = $(event.target).next('.video-list-entry-detail').text();
     //   var url = `https://www.youtube.com/embed/${id}`;

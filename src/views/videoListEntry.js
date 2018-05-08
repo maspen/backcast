@@ -6,7 +6,6 @@ var VideoListEntryView = Backbone.View.extend({
 
       this.model.select( this.model );
 
-
     }.bind(this));
 
   },
