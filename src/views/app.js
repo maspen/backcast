@@ -2,9 +2,23 @@ var AppView = Backbone.View.extend({
 
   
   el: '#app',
+  //var collection
 
   initialize: function() {
+    // * create the collection
+    // collection = new Videos();
+    
+    // maybe want to do a service call to pre-populate
+    //    collection w/ some data so can pass that to the
+    //    components to be rendered; so that they show something
+    //    on the screen
+    //    Q: would have to trigger a search w/ parameters
+    
+    // * resetting the collection: collection.reset()
+
     this.videos = new Videos(exampleVideoData);
+    // this.videos = new Videos();
+
     this.render();
   },
   
