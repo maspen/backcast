@@ -6,7 +6,7 @@ var VideoListView = Backbone.View.extend({
       console.log('I hear syncing...');
       this.render();
     }, this);
-    
+
   },
 
   render: function() {
@@ -17,11 +17,14 @@ var VideoListView = Backbone.View.extend({
     
     _.each(this.collection.models, function(model, i) {
       new VideoListEntryView({
-        // el: this.$('.video-list'),
         model: model
       }).render().$el.appendTo('.video-list');
     }, this);
-    
+
+    $('.video-list').on('click', '.video-list-entry-title', function(event) {
+      console.log( $(event.target).text() );
+    });
+
     return this;
   },
 
