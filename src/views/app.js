@@ -7,6 +7,10 @@ var AppView = Backbone.View.extend({
     this.videos = new Videos(exampleVideoData);
     this.render();
   },
+  
+  // sync: function() {
+  //   this.render();
+  // },
 
 
   render: function() {

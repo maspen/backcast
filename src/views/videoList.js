@@ -1,13 +1,12 @@
 var VideoListView = Backbone.View.extend({
 
   initialize: function() {
-    // this.$el.children().detach();
-    // // TODO listener on collection when changes calls render
-    // _.each(this.collection.models, function(movie) {
-    //   // console.log('movie ' + movie);
-    //   //console.log('VideoListView calling render()');
-    //   this.render();
-    // }, this);
+
+    this.listenTo( this.collection, 'sync', function(event) {
+      console.log('I hear syncing...');
+      this.render();
+    }, this);
+    
   },
 
   render: function() {
@@ -16,7 +15,7 @@ var VideoListView = Backbone.View.extend({
     
     $('.video-list').empty();
     
-    _.each(this.collection.models, function(model, i){
+    _.each(this.collection.models, function(model, i) {
       new VideoListEntryView({
         // el: this.$('.video-list'),
         model: model
