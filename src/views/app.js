@@ -5,7 +5,6 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.videos = new Videos(exampleVideoData);
-console.log('AppView this.videos ' + JSON.stringify(this.videos));    
     this.render();
   },
 
@@ -26,10 +25,10 @@ console.log('AppView this.videos ' + JSON.stringify(this.videos));
       collection: this.videos
     }).render();
 
-    new VideoListEntryView({
-      el: this.$('.video-list'),
-      collection: this.videos
-    }).render();
+    // new VideoListEntryView({
+    //   el: this.$('.video-list'),
+    //   collection: this.videos
+    // }).render();
 
     return this;
   },
