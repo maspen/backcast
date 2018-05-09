@@ -3,23 +3,11 @@ var Videos = Backbone.Collection.extend({
   model: Video,
   
   url: 'https://www.googleapis.com/youtube/v3/search',
-  // url: 'https://www.youtube.com/results?search_query=surfing&pbi=1',
-  
-  // url: 'https://gdata.youtube.com/feeds/api/playlists/67DEB98D8D9CF0F7?v=2&alt=json-in-script&max-results=6',
-  
-  // to fetch from url
-  // url: "http://localhost:51377/api/Books",
-  // then:
-  //     collection
   
   initialize: function() {
-    
 
     // go to YouTube, get data
     // if no date, take argument
-    console.log('Videos.initialize');
-    console.log(this);
-
     this.on('sync', function() {
       console.log('collection synced');
     });
@@ -37,11 +25,26 @@ var Videos = Backbone.Collection.extend({
     this.on('remove', function(model) {
       console.log('something from collection got removed');
     });
+
+    console.log('Collection sees search', this.model);
+
+    this.listenTo( this.search, 'click', function(event) {
+      console.log('I hear searching...');
+      this.search('music');
+    }, this);
+
+    // MenuComponent.bind("search-clicked", this.search, this);
     
-    this.search();
+    $(document).on('click', '.search .btn', function(event) {
+      event.preventDefault();
+      var query = $(event.target).closest('div').find('input').val();
+      this.search(query);
+    }.bind(this));
+    
+    this.search('surfing');
   },
   
-  search: function() {
+  search: function(query) {
     // fetch - query data, already has url
     // create a parse method
     $.ajax({
@@ -50,15 +53,25 @@ var Videos = Backbone.Collection.extend({
       data: {
         key: YOUTUBE_API_KEY,
         maxResults: '5',
-        q: 'surfing',
+        q: query,
         part: 'snippet'
       },
       dataType: 'json',
       success: function(data) {
         console.log('Success!', data.items);
         this.set( data.items );
-        console.log(this);
-        // model.select( this.models[0] );
+        var model = data.items[0];
+
+        var id = model.id.videoId;
+        var title = model.snippet.title;
+        var description = model.snippet.description;
+        var url = `https://www.youtube.com/embed/${id}`;
+
+        $('.video-player').find('iframe').attr('src', url);
+        $('.video-player').find('iframe').attr('src', url);
+        $('.video-player').find('.video-player-details h3').text(title);      
+        $('.video-player').find('.video-player-details div').text(description);
+
       }.bind(this),
       error: function(data) {
         console.log('Failure...', data);

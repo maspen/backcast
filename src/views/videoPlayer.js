@@ -9,8 +9,8 @@ var VideoPlayerView = Backbone.View.extend({
     this.$el.html(this.template());
 
     // console.log( 'video view', this );
-    // this.model.select ( this.model );
-
+    this.model.select ( this.model );
+    // object.trigger(event, [*args]) 
     return this;
   },
 

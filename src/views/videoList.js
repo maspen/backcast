@@ -2,7 +2,7 @@ var VideoListView = Backbone.View.extend({
 
   initialize: function() {
 
-    console.log('VLV ', this.collection); 
+    // console.log('VLV ', this.collection); 
 
     this.listenTo( this.collection, 'add', function(event) {
       console.log('I hear syncing...');
@@ -15,19 +15,6 @@ var VideoListView = Backbone.View.extend({
     this.$el.children().detach();
 
     this.$el.html(this.template());
-
-    // $('.video-list').on('click', '.video-list-entry-title', function(event) {
-    //   var id = $(event.target).closest('.media').data('id');
-    // newModel = model.select(id);
-    
-    
-    //   var title = $(event.target).text();
-    //   var description = $(event.target).next('.video-list-entry-detail').text();
-    //   var url = `https://www.youtube.com/embed/${id}`;
-    //   $('.video-player').find('iframe').attr('src', url);      
-    //   $('.video-player').find('.video-player-details h3').text(title);      
-    //   $('.video-player').find('.video-player-details div').text(description);
-    // }, this);
     
     $('.video-list').empty();
     

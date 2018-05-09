@@ -2,6 +2,8 @@ var AppView = Backbone.View.extend({
 
   
   el: '#app',
+  search: '',
+  // Backbone.Model.definitions = {},
 
   initialize: function() {
     // * create the collection
@@ -15,8 +17,7 @@ var AppView = Backbone.View.extend({
     
     // * resetting the collection: collection.reset()
 
-    // this.videos = new Videos(exampleVideoData);
-    this.videos = new Videos();
+    this.videos = new Videos(exampleVideoData);
     this.render();
   },
   
@@ -28,18 +29,19 @@ var AppView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template());
     
-    console.log('this.videos', this.videos);
+    // console.log('this.videos', this.videos);
 
-    new SearchView({
-      el: this.$('.search')
+    this.search = new SearchView({
+      el: this.$('.search'),
+      collection: this.videos
     }).render();
     
-    new VideoPlayerView({
+    this.videoPlayerView = new VideoPlayerView({
       el: this.$('.player'),
       model: this.videos.models[0]
     }).render();
 
-    new VideoListView({
+    this.videoListView = new VideoListView({
       el: this.$('.list'),
       collection: this.videos
     }).render();
