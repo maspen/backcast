@@ -1,10 +1,23 @@
+
 <div class="video-list-entry media">
   <div class="media-left">
+<<<<<<< HEAD
     <img class="media-object" src="https://i.ytimg.com/vi/<%- id %>/default.jpg" />
   </div>
   <div class="media-body">
     <div class="video-list-entry-title"><%- snippet.title %></div>
     <div class="video-list-entry-detail"><%- snippet.description %></div>
     
+=======
+    <img class="media-object" src="<%= snippet.thumbnails.default.url %>" />
+  </div>
+  <div class="media-body">
+    <div class="video-list-entry-title">
+      <%= snippet.title %>
+    </div>
+    <div class="video-list-entry-detail">
+      <%= snippet.description %>
+    </div>
+>>>>>>> 30337efd8b3ff309106107c195d07aa0e129570f
   </div>
 </div>

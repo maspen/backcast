@@ -6,6 +6,7 @@ var AppView = Backbone.View.extend({
   // Backbone.Model.definitions = {},
 
   initialize: function() {
+<<<<<<< HEAD
     // * create the collection
     // collection = new Videos();
     
@@ -24,10 +25,25 @@ var AppView = Backbone.View.extend({
   // sync: function() {
   //   this.render();
   // },
+=======
+    this.videos = new Videos();
+
+    this.listenTo(this.videos, 'sync', this.selectFirst);
+    this.videos.search('javascript tutorial');
+    this.render();
+      },
+>>>>>>> 30337efd8b3ff309106107c195d07aa0e129570f
 
 
+  selectFirst: function() {
+    if (this.videos.length > 0) {
+      this.videos.at(0).select();
+    }
+  },
+  
   render: function() {
     this.$el.html(this.template());
+<<<<<<< HEAD
     
     // console.log('this.videos', this.videos);
 
@@ -52,6 +68,25 @@ var AppView = Backbone.View.extend({
     // }).render();
 
     return this;
+=======
+
+    new SearchView({
+      collection: this.videos,
+      el: this.$('.search')
+    }).render();
+
+    new VideoListView({
+      collection: this.videos,
+      el: this.$('.list')
+    }).render();
+
+    new VideoPlayerView({
+      model: this.videos.at(0),
+      collection: this.videos,
+      el: this.$('.player')
+    }).render();
+        return this;
+>>>>>>> 30337efd8b3ff309106107c195d07aa0e129570f
   },
 
   template: templateURL('src/templates/app.html')
